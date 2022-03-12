@@ -3,6 +3,38 @@ from gzip import decompress
 from warcio.archiveiterator import ArchiveIterator
 
 
+def url_is_trustworthy(url: str) -> bool:
+    trustworthy_sources = [
+        "economist.com",
+        "nytimes.com",
+        "forbes.com",
+        "apnews.com",
+        "bbc.com",
+        "usatoday.com",
+        "wsj.com",
+        "reuters.com",
+        "foxnews.com",
+        "cnn.com",
+        "npr.com",
+        "pbs.com",
+        "cbsnews.com",
+        "theguardian.com",
+        "nbcnews.com",
+        "latimes.com",
+        "wikinews.org",
+        "therealnews.com",
+        "c-span.org",
+        "who.int",
+        "kff.org",
+        "cdc.org",
+        "usa.org",
+    ]
+    for source in trustworthy_sources:
+        if source in url:
+            return True
+    return False
+
+
 def get_warc_urls(time: str) -> list[str]:
     """
     Fetch the warc file paths in the specified year and number, decompress it,

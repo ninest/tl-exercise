@@ -4,6 +4,10 @@
 
 Find pages from the [common crawl archive](https://commoncrawl.org/) that discuss or are relevant to COVID-19’s economic impact.
 
+### Assumptions
+
+- Finding news articles from trustworthy sources related to COVID-19's economic impact
+
 ## Steps
 
 ### 1. Extracting data from Common Crawl
@@ -71,4 +75,11 @@ This change definitely displayed for relevant results. Another issue was article
 
 Finding the page's publish data would require finding abd extracting the date in the HTML. This is, however, a different process for each website. One solution would be to use a pre-existing library such as [Mercury Parse](https://github.com/postlight/mercury-parser). However, there is only a Nodejs version.
 
-Another method would be to simply check if "2020" is in the article URL.
+Another method would be to simply check if "2020" is in the article URL. This works for the set of news sources, but will not work across all webpages if they do not have the publishing date in the URL.
+
+## Extending the project
+
+If I had more time to work on this assignment, I would explore the following:
+
+- Include more words relating to COVID-19 and economic impacts to better search for articles on the topic. I would manually find articles and find out the most common words across them.
+- Differentiate between articles and "listing pages" (web pages that only link to other pages but do not provide information on their own)
