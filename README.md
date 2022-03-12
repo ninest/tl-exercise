@@ -77,6 +77,10 @@ Finding the page's publish data would require finding abd extracting the date in
 
 Another method would be to simply check if "2020" is in the article URL. This works for the set of news sources, but will not work across all webpages if they do not have the publishing date in the URL.
 
+## Data
+
+I did not have enough time to finish collecting all the data, but few links are in `results.txt`.
+
 ## Extending the project
 
 If I had more time to work on this assignment, I would explore the following:
