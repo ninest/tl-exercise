@@ -12,11 +12,11 @@ warc_paths = get_warc_urls_multiple(
         # "2020-05",
         # "2020-10",
         # "2020-16",
-        # "2020-24",
+        "2020-24",
         # "2020-29",
-        "2020-34",
-        "2020-40",
-        "2020-45",
+        # "2020-34",
+        # "2020-40",
+        # "2020-45",
         "2020-50",
     ]
 )
@@ -42,6 +42,10 @@ trustworthy_sources = [
     "wikinews.org",
     "therealnews.com",
     "c-span.org",
+    "who.int",
+    "kff.org",
+    "cdc.org",
+    "usa.org",
 ]
 
 
@@ -65,14 +69,15 @@ def find_articles(warc_paths: list[str]):
 
             url = record.rec_headers.get_header("WARC-Target-URI")
 
-            # if not ((".com/" in url) or (".org/" in url)):
-            # continue
             if not url_is_trustworthy(url):
+                continue
+
+            if not "2020" in url:
                 continue
 
             contents = record.content_stream().read().decode("utf-8", "replace").lower()
             soup = BeautifulSoup(contents)
-            body = soup.body
+            body = soup.find("article")
             if not body:
                 continue
             article_text = body.text
@@ -89,7 +94,11 @@ def find_articles(warc_paths: list[str]):
             if not conditions:
                 continue
 
+            date = record.rec_headers.get_header("WARC-Date")
+
             print(url)
+            print(date)
+            print()
 
 
 find_articles(warc_paths)
