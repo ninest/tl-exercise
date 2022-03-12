@@ -1,22 +1,22 @@
-from datetime import datetime
 import requests
+from datetime import datetime
 from warcio.archiveiterator import ArchiveIterator
 from bs4 import BeautifulSoup
-from file import append_to_file, create_file
 
-from utils import get_warc_urls, get_warc_urls_multiple, url_is_trustworthy
+from file import append_to_file, create_file
+from utils import get_warc_urls_multiple, url_is_trustworthy
 
 warc_paths = get_warc_urls_multiple(
     [
         "2020-05",
-        # "2020-10",
-        # "2020-16",
-        # "2020-24",
-        # "2020-29",
-        # "2020-34",
-        # "2020-40",
-        # "2020-45",
-        # "2020-50",
+        "2020-10",
+        "2020-16",
+        "2020-24",
+        "2020-29",
+        "2020-34",
+        "2020-40",
+        "2020-45",
+        "2020-50",
     ]
 )
 
@@ -66,6 +66,7 @@ def find_articles(warc_paths: list[str]):
             string = f"{date.strftime('%B %Y')} {url}"
 
             # Append the result to the file
+            print(string)
             append_to_file("results.txt", string)
 
 
